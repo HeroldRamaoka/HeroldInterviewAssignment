@@ -24,6 +24,7 @@ namespace Herold_InterviewAssignment.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+
         }
 
         public class WeatherForecast
