@@ -10,7 +10,7 @@ namespace Herold_InterviewAssignment.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AccountController : ControllerBase
     {
     }
