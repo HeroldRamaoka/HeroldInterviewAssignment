@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 import { User } from '../login/user';
-import { httpFactory } from '@angular/http/src/http_module';
 
 @Injectable()
 export class UserService {
@@ -12,7 +11,7 @@ export class UserService {
    }
 
    login(user: User){
-    return this.http.post(this.url + "/api-auth/login/", user);
+    return this.http.post(this.url + "/api-token-auth/", user);
    }
 
    getEmployees(){

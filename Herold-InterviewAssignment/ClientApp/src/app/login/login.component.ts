@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(result => {
         this.user = result.json();
 
-        console.log(this.user);
+        console.log(this.user.Password);
 
       })
   }
