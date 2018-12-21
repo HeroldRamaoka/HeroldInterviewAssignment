@@ -66,7 +66,6 @@ namespace Herold_InterviewAssignment
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -89,6 +88,7 @@ namespace Herold_InterviewAssignment
             });
 
             app.UseMvc();
+            app.UseAuthentication();
         }
     }
 }

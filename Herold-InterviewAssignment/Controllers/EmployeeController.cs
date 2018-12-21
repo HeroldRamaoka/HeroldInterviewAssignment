@@ -21,22 +21,18 @@ namespace Herold_InterviewAssignment.Controllers
 
         [Route("employees")]
         [HttpGet]
-        public async Task<IActionResult> GetEmployees()
+        public async Task<IActionResult> GetToken()
         {
             using (var client = new HttpClient())
             {
                 try
                 {
-                    //var token = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
-                    client.BaseAddress = new Uri("http://staging.tangent.tngnt.co/api-auth/login/?next=/api/username=pravin.gordhan&username&password=pravin.gordhan");
-                    var response = await client.GetAsync($"api/employee/");
+                    ////var token = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                    client.BaseAddress = new Uri("http://staging.tangent.tngnt.co/api-token-auth/");
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
+                    client.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded");
                     
-                    response.EnsureSuccessStatusCode();
-
-                    var stringResult = await response.Content.ReadAsStringAsync();
-                    var jsonData = JsonConvert.DeserializeObject<Employee>(stringResult);
-
-                    return Ok("success");
+                        return Ok("success");
                 }
                 catch (HttpRequestException httpRequestException)
                 {
