@@ -22,14 +22,20 @@ namespace Herold_InterviewAssignment.Controllers
 
         }
 
-        [Route("login")]
+        [HttpGet, Route("testing")]
+        public IActionResult testing()
+        {
+            return Ok("Success");
+        }
+
         [HttpPost]
-        async static void PostAsync()
+        [Route("token")]
+        public async Task<IActionResult> Login([FromForm] User user)
         {
             IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()
                 {
-                    new KeyValuePair<string, string>("username", "pravin.gordhan"),
-                    new KeyValuePair<string, string>("password", "pravin.gordhan")
+                    new KeyValuePair<string, string>("username", user.Username),
+                    new KeyValuePair<string, string>("password", user.Password)
                 };
 
             HttpContent q = new FormUrlEncodedContent(queries);
@@ -42,10 +48,15 @@ namespace Herold_InterviewAssignment.Controllers
                         string mycontent = await content.ReadAsStringAsync();
                         HttpContentHeaders headers = content.Headers;
 
-                        Console.WriteLine(mycontent);
+                        if (mycontent.Length > 0)
+                        {
+                            return Ok(mycontent);
+                        }
                     }
                 }
             }
+
+            return BadRequest("Invalid credentials provided");
         }
     }
 }

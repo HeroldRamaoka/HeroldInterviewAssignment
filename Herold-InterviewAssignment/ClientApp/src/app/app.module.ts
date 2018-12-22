@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,9 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserService } from './services/user.service';
 import { HttpModule } from '@angular/http';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -30,15 +33,24 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent , canActivate: [AuthGuard] },
+      { path:  'login', component: LoginComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      {path:  'login', component: LoginComponent },
-      {path: 'dashboard', component: DashboardComponent }
+      {path: 'dashboard', component: DashboardComponent },
+
+      {path: '**', redirectTo: '' }
     ])
   ],
   providers: [
-    UserService
+    AuthGuard,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+    
   ],
   bootstrap: [AppComponent]
 })

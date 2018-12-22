@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from './user';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router'; 
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,29 +12,35 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
+  loginError: boolean = false;
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    //this.getEmployees();
+    this.userService.logout();
   }
 
   login(){
     this.userService.login(this.user) 
       .pipe(first()).subscribe(result => {
-        
+        if(result && result.token){
 
-        console.log(result);
+          localStorage.setItem('currentUser', result.token);
+          this.router.navigate(['/dashboard']);
 
+        }
+      },
+      (err: HttpErrorResponse) => {
+        this.loginError = true;
       })
   }
 
   getEmployees() {
     this.userService.getEmployees()
-      .pipe(first()).subscribe(output => {
-        var res = output.json();
-        console.log(res);
+      .subscribe(output => {
+
       });
   }
 }
