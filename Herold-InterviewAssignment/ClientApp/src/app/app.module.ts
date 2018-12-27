@@ -33,23 +33,23 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent , canActivate: [AuthGuard] },
+      { path: '', component: HomeComponent },
       { path:  'login', component: LoginComponent },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      {path: 'dashboard', component: DashboardComponent },
+      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
+      {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 
       {path: '**', redirectTo: '' }
     ])
   ],
   providers: [
     AuthGuard,
-    UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    }
+    UserService
+    //{
+      // provide: HTTP_INTERCEPTORS,
+      // useClass: JwtInterceptor,
+      // multi: true
+    //}
     
   ],
   bootstrap: [AppComponent]

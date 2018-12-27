@@ -31,6 +31,19 @@ namespace Herold_InterviewAssignment
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("HeroldAppCors",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+
+                });
+            });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -48,6 +61,7 @@ namespace Herold_InterviewAssignment
                 });
 
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +76,11 @@ namespace Herold_InterviewAssignment
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("https://localhost:44327/");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

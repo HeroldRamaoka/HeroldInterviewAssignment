@@ -2,20 +2,14 @@ import { Injectable } from '@angular/core';
 import { User } from '../login/user';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
 
-  url = "http://staging.tangent.tngnt.co";
-
-   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private router: Router
+    ) {
    }
 
    login(user: User) {
@@ -29,9 +23,19 @@ export class UserService {
 
    logout() {
      localStorage.removeItem('currentUser');
+     this.router.navigate(["/login"]);
    }
 
-   getEmployees(){
-     return this.http.get(this.url + "/api/employee/");
+   getEmployees(): Observable<any>{
+     console.log(localStorage.getItem("currentUser"));
+     const payload = {
+       'password': 'pravin.gordhan',
+       'username': 'pravin.gordhan'
+     };
+
+     return this.http.get("http://staging.tangent.tngnt.co/api/user/me/", {
+       headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem("currentUser")})
+     });
+
    }
 }   

@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { User } from './user';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router'; 
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  loginError: boolean = false;
   constructor(
     private userService: UserService,
     private router: Router
@@ -30,10 +28,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', result.token);
           this.router.navigate(['/dashboard']);
 
+        }else{
+          console.log("something went wrong");
         }
-      },
-      (err: HttpErrorResponse) => {
-        this.loginError = true;
       })
   }
 

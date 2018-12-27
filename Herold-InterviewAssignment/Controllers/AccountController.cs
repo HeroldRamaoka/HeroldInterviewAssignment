@@ -6,13 +6,16 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using HeroldInterviewAssignment.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Herold_InterviewAssignment.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("HeroldAppCors")]
     //[Authorize]
     public class AccountController : ControllerBase
     {
@@ -48,15 +51,12 @@ namespace Herold_InterviewAssignment.Controllers
                         string mycontent = await content.ReadAsStringAsync();
                         HttpContentHeaders headers = content.Headers;
 
-                        if (mycontent.Length > 0)
-                        {
-                            return Ok(mycontent);
-                        }
+                        return Ok(mycontent);
                     }
                 }
             }
 
-            return BadRequest("Invalid credentials provided");
+            //return BadRequest("Invalid credentials provided");
         }
     }
 }
