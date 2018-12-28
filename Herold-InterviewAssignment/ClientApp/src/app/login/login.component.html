@@ -1,34 +1,37 @@
 <body>
     <div class="container">
       <div class="row justify-content-md-center mt-3 mb-0">
-        <img src="../../assets/images/login_user_profile_account-512.png" width="100" height="100" style="border-radius: 50%" class="mt-5 mb-0">
+        <img src="../../assets/images/signin1.jpg" width="130" height="130" style="border-radius: 50%" class="mt-5 mb-0">
       </div>
 
-      <div class="row justify-content-md-center pt-2 pb-0"> 
-        <h1>Login</h1>
+      <div class="row justify-content-md-center pt-2 pb-0" style="margin-top: -10px !important"> 
+        <h2 style="font-family: Cooper Black; color: lightblue">Login</h2>
       </div>
         
-      <div class="row justify-content-md-center mt-0 pt-0">
+      <div class="row justify-content-md-center mt-0 pt-0" style="margin-top: -25px !important">
           <div class="col-5 mt-1">
-            <div class="card mt-5">
+            <div class="card mt-5 loginCard">
       
               <div class="card-body"> 
+                <h4 class="text-center pb-2 mb-2" style="font-family: cooper black; color: #0059ff">Provide login credentials to log in</h4>
                 <form #userLoginForm="ngForm" (ngSubmit)=login()>
-                    <div class="form-group">
+                    <div class="form-group has-feedback has-feedback-left">
                         <label class="form-label">User Name</label>
-                        <input type="text" placeholder="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username" class="form-control">
-                    </div>
+                        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                        <input type="text" placeholder="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username" class="form-control loginInputField">
+                      </div>
           
-                    <div class="form-group">
+                    <div class="form-group has-feedback has-feedback-left">
                         <label class="form-label">Password</label>
-                        <input type="text" placeholder="Password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" class="form-control">
+                        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                        <input type="text" placeholder="Password" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" class="form-control loginInputField">
                     </div>
                     
                     <div class="form-group">
-                      <input type="checkbox" style="color: white"> Remember me
+                      <input type="checkbox" style="font-family: cooper black; color: black"> Remember me
                     </div>
                     <div class="form-group">
-                      <button [disabled]="!userLoginForm.form.valid" class="btn btn-primary form-control waves-effect waves-light" type="submit"><i class="fa fa-sign-in">&nbsp;</i> Login</button>
+                      <button [disabled]="!userLoginForm.form.valid" class="btn loginButton btn-primary form-control waves-effect waves-light" type="submit"><i class="fa fa-sign-in">&nbsp;</i> Login</button>
                     </div>
                 </form>
               </div>

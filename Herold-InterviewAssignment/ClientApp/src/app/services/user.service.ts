@@ -3,9 +3,11 @@ import { User } from '../login/user';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Employee } from '../models/employee';
 
 @Injectable()
 export class UserService {
+
 
   constructor(private http: HttpClient,
     private router: Router
@@ -19,14 +21,15 @@ export class UserService {
      };
 
     return this.http.post<any>("http://staging.tangent.tngnt.co/api-token-auth/", payload)
+
    }
 
    logout() {
-     localStorage.removeItem('currentUser');
+     localStorage.removeItem('currentUser'); 
      this.router.navigate(["/login"]);
    }
 
-   getEmployees(): Observable<any>{
+   getEmployees(){
      console.log(localStorage.getItem("currentUser"));
      const payload = {
        'password': 'pravin.gordhan',

@@ -33,7 +33,7 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: LoginComponent },
       { path:  'login', component: LoginComponent },
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
