@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router'; 
-import { UserService } from '../services/user.service';
-// import { UserService } from '../../app/services/user.service';
+import { UserService } from '../../app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +23,10 @@ export class LoginComponent implements OnInit {
   login(){
     this.userService.login(this.user) 
       .pipe(first()).subscribe(result => {
-
-        console.log(result);
         if(result && result.token){
 
           localStorage.setItem('currentUser', result.token);
-          this.router.navigate(['/dashboard']);
+          
 
         }else{
           console.log("something went wrong");

@@ -1,0 +1,26 @@
+/* body {
+    /* background-color: #c7d6e0; */
+    /* background: url(../src/assets/images/interior.jpg) no-repeat center center fixed; */
+    /* -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important; */
+    /* opacity: 0.9;    
+    background: red !important;
+    height: 100% !important;
+} */
+
+.loginCard:hover {
+    opacity: 0.9;
+}
+
+.loginButton {
+    height: 40px !important;
+    font-size: larger !important;
+    border-radius: 0%;
+}
+
+.loginInputField {
+    height: 35px !important;
+    border-radius: 0%;
+}

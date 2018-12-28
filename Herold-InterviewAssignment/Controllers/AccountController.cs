@@ -33,8 +33,9 @@ namespace Herold_InterviewAssignment.Controllers
 
         [HttpPost]
         [Route("token")]
-        public async Task<IActionResult> Login([FromForm] User user)
+        public async Task<IActionResult> Login([FromBody] User user)
         {
+            string mycontent = "";
             IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("username", user.Username),
@@ -43,20 +44,22 @@ namespace Herold_InterviewAssignment.Controllers
 
             HttpContent q = new FormUrlEncodedContent(queries);
             using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage response = await client.PostAsync("http://staging.tangent.tngnt.co/api-token-auth/", q))
+            using (HttpResponseMessage response = await client.PostAsync("http://staging.tangent.tngnt.co/api-token-auth/", q))
+
+                if (response.StatusCode.ToString() == "OK")
                 {
                     using (HttpContent content = response.Content)
                     {
-                        string mycontent = await content.ReadAsStringAsync();
+                        mycontent = await content.ReadAsStringAsync();
                         HttpContentHeaders headers = content.Headers;
 
-                        return Ok(mycontent);
+                        var jsonData = JsonConvert.DeserializeObject(mycontent);
+
+                        return Ok(jsonData);
                     }
                 }
-            }
 
-            //return BadRequest("Invalid credentials provided");
+            return BadRequest("Unable to login, please check your credentials");
         }
     }
 }

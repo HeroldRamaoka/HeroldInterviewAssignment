@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from '../login/user';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Employee } from '../models/employee';
+import { User } from '../../account/login/user';
 
 @Injectable()
 export class UserService {
@@ -20,13 +20,13 @@ export class UserService {
        'username': user.Username
      };
 
-    return this.http.post<any>("http://staging.tangent.tngnt.co/api-token-auth/", payload)
+    return this.http.post<any>("https://localhost:44327/api/Account/token/", payload)
 
    }
 
    logout() {
      localStorage.removeItem('currentUser'); 
-     this.router.navigate(["/login"]);
+     this.router.navigate(["../account/login"]);
    }
 
    getEmployees(){
@@ -39,6 +39,5 @@ export class UserService {
      return this.http.get("http://staging.tangent.tngnt.co/api/user/me/", {
        headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem("currentUser")})
      });
-
    }
 }   

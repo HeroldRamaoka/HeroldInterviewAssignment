@@ -9,12 +9,14 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserService } from './services/user.service';
 import { HttpModule } from '@angular/http';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
+// import { LoginComponent } from '../account/login/login.component';
+import { AccountComponent } from '../account/account.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

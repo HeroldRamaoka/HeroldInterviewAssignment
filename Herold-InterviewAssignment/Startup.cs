@@ -77,10 +77,12 @@ namespace Herold_InterviewAssignment
                 app.UseHsts();
             }
 
-            app.UseCors(builder =>
-            {
-                builder.WithOrigins("https://localhost:44327/");
-            });
+
+            app.UseCors("HeroldAppCors");
+            //app.UseCors(builder =>
+            //{
+            //    builder.WithOrigins("https://localhost:4200/");
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
