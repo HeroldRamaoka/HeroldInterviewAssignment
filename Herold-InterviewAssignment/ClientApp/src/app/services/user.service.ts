@@ -30,14 +30,15 @@ export class UserService {
    }
 
    getEmployees(){
-     console.log(localStorage.getItem("currentUser"));
-     const payload = {
-       'password': 'pravin.gordhan',
-       'username': 'pravin.gordhan'
-     };
+    //  console.log(localStorage.getItem("currentUser"));
+    //  const payload = {
+    //    'password': 'pravin.gordhan',
+    //    'username': 'pravin.gordhan'
+    //  };
 
      return this.http.get("http://staging.tangent.tngnt.co/api/user/me/", {
        headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem("currentUser")})
      });
+
    }
 }   
