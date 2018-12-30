@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
 
@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
     this.userService.logout();
   }
 
-  getEmployees() {
-    this.userService.getEmployees()
+  getEmployee() {
+    this.userService.userProfile()
       .pipe(first()).subscribe(result => {
         console.log(result);
       })

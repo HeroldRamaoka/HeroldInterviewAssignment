@@ -33,11 +33,4 @@ export class LoginComponent implements OnInit {
         }
       })
   }
-
-  getEmployees() {
-    this.userService.getEmployees()
-      .subscribe(output => {
-
-      });
-  }
 }
