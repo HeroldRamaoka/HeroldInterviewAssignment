@@ -17,7 +17,8 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
 // import { LoginComponent } from '../account/login/login.component';
 import { AccountComponent } from '../account/account.component';
 import { LoginComponent } from './login/login.component';
-
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     HttpModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path:  'login', component: LoginComponent },
