@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Employees } from '../models/employees';
+import { UserProfile } from '../models/userProfile';
 
 @Injectable()
 export class EmployeesService {
@@ -8,8 +11,17 @@ export class EmployeesService {
     private http: HttpClient
   ) { }
 
-    getAllEmployees() {
-      
+    getAllEmployees(): Observable<Employees[]> {
+      return this.http.get<Employees[]>("http://staging.tangent.tngnt.co/api/employee/",{
+        headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
+      })
+    }
+
+    userProfile(): Observable<UserProfile[]>{
+      return this.http.get<UserProfile[]>("http://staging.tangent.tngnt.co/api/user/me/", {
+        headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
+      });
+ 
     }
 
 }

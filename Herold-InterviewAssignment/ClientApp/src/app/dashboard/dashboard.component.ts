@@ -18,10 +18,4 @@ export class DashboardComponent implements OnInit {
     this.userService.logout();
   }
 
-  getEmployee() {
-    this.userService.userProfile()
-      .pipe(first()).subscribe(result => {
-        console.log(result);
-      })
-  }
 }

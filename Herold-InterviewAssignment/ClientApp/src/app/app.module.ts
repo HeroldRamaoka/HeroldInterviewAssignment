@@ -53,6 +53,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
       {path: 'userprofile', component: UserProfileComponent},
+      {path: 'employees', component: EmployeesComponent},
       {path: 'nav', component: AppNavbarComponent},
 
       {path: '**', redirectTo: '' }

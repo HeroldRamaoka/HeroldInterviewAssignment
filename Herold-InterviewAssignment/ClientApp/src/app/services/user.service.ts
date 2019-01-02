@@ -28,10 +28,4 @@ export class UserService {
      this.router.navigate(["../account/login"]);
    }
 
-   userProfile(): Observable<Employee[]>{
-     return this.http.get<Employee[]>("http://staging.tangent.tngnt.co/api/user/me/", {
-       headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
-     });
-
-   }
 }   

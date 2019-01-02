@@ -40,4 +40,8 @@ export class AppNavbarComponent implements OnInit {
   gotoUserProfile(): void {
     this.router.navigate(['/userprofile']);
   }
+
+  gotoEmployees(): void {
+    this.router.navigate(['/employees']);
+  }
 }
