@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         if(result && result.token){
 
           localStorage.setItem('currentUser', result.token);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/appcomponent']);
 
         }else{
           // console.log("something went wrong");

@@ -19,6 +19,10 @@ import { AccountComponent } from '../account/account.component';
 import { LoginComponent } from './login/login.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesService } from './services/employees.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FetchDataComponent,
     LoginComponent,
     DashboardComponent,
-    AccountComponent
+    AccountComponent,
+    AppNavbarComponent,
+    EmployeesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,17 +47,21 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
-      { path:  'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent },
+      {path: 'appcomponent', component: AppComponent},
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+      {path: 'userprofile', component: UserProfileComponent},
+      {path: 'nav', component: AppNavbarComponent},
 
       {path: '**', redirectTo: '' }
     ])
   ],
   providers: [
     AuthGuard,
-    UserService
+    UserService,
+    EmployeesService
     //{
       // provide: HTTP_INTERCEPTORS,
       // useClass: JwtInterceptor,
