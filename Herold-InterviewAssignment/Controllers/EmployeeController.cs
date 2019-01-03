@@ -23,15 +23,17 @@ namespace Herold_InterviewAssignment.Controllers
         }
 
         [HttpGet]
-        [Route("employee")]
+        [Route("currentUser")]
         public async Task<IActionResult> GetToken()
         {
             using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync("http://staging.tangent.tngnt.co/api/user/me/"))
+            {
+                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/user/me/");
 
                 if (response.StatusCode.ToString() == "OK")
                 {
-
                     using (HttpContent content = response.Content)
                     {
                         string mycontent = await content.ReadAsStringAsync();
@@ -42,6 +44,7 @@ namespace Herold_InterviewAssignment.Controllers
                         return Ok(json);
                     }
                 }
+            }
 
             return BadRequest("Did not get data");
         }

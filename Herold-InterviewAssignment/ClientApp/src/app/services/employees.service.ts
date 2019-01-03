@@ -18,7 +18,7 @@ export class EmployeesService {
     }
 
     userProfile(): Observable<UserProfile[]>{
-      return this.http.get<UserProfile[]>("http://staging.tangent.tngnt.co/api/user/me/", {
+      return this.http.get<UserProfile[]>("http://staging.tangent.tngnt.co/api/employee/me/", {
         headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
       });
  

@@ -1,0 +1,3 @@
+function dataTableFunction() {
+    alert("hello");
+}

@@ -1,3 +1,105 @@
-<p>
-  user-profile works!
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+
+  <body>
+      <h4>User Profile</h4>
+
+      <div class="container-fluid">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            My Details
+          </div>
+          <div class="card-body">
+            <table class="table table-striped table-bordered">
+                  <tr>
+                    <th>First Name</th>
+                    <td>{{users.user.first_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>Last Name</th>
+                    <td>{{users.user.last_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone Number</th>
+                    <td>{{users.phone_number}}</td>
+                  </tr>
+                  <tr>
+                    <th>Address</th>
+                    <td>{{users.physical_address}}</td>
+                  </tr>
+                  <tr>
+                    <th>Email Address</th>
+                    <td>{{users.email}}</td>
+                  </tr>
+                  <tr>
+                    <th>ID Number</th>
+                    <td>{{users.id_number}}</td>
+                  </tr>
+                  <tr>
+                    <th>Birthday</th>
+                    <td>{{users.birth_date}}</td>
+                  </tr>
+                  <tr>
+                    <th>Age</th>
+                    <td>{{users.age}} years</td>
+                  </tr>
+                  <tr>
+                    <th>Gender</th>
+                    <td>{{users.gender}}</td>
+                  </tr>
+                  <tr>
+                    <th>Race</th>
+                    <td>{{users.race}}</td>
+                  </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              Employee Information
+            </div>
+            <div class="card-body">
+              <table class="table table-striped table-bordered">
+                    <tr>
+                      <th>Tax Number</th>
+                      <td>{{users.tax_number}}</td>
+                    </tr>
+                    <tr>
+                      <th>Email</th>
+                      <td>{{users.user.email}}</td>
+                    </tr>
+                    <tr>
+                      <th>Username</th>
+                      <td>{{users.user.username}}</td>
+                    </tr>
+                    <tr>
+                      <th>Start Date</th>
+                      <td>{{users.start_date}}</td>
+                    </tr>
+                    <tr>
+                      <th>Work Title</th>
+                      <td>{{users.position.name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Level</th>
+                      <td>{{users.position.level}}</td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Salary</th>
+                        <td>{{users.employee_review.salary}}</td>
+                    </tr> -->
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </body>
+</html>

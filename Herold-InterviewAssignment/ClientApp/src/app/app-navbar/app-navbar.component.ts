@@ -20,14 +20,11 @@ export class AppNavbarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.userProfile();
+    this.userLoggedin();
   }
 
-  userProfile(){
-    return this.http.get<Employee[]>("http://staging.tangent.tngnt.co/api/user/me/", {
-      headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
-      
-    }).subscribe(res => {
+  userLoggedin(){
+    return this.http.get<Employee[]>("https://localhost:44327/api/Employee/currentUser/").subscribe(res => {
       this.employee = res;
     })
 

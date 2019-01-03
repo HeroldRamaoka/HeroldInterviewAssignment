@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { Employees } from '../models/employees';
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
 
 @Component({
   selector: 'app-employees',
@@ -10,8 +13,11 @@ import { Employees } from '../models/employees';
 export class EmployeesComponent implements OnInit {
 
   public employees: Employees[];
+  dataTable: any;
+
   constructor(
-    private employeesService: EmployeesService
+    private employeesService: EmployeesService,
+    private chRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -20,9 +26,12 @@ export class EmployeesComponent implements OnInit {
 
   getAllEmployees() {
     this.employeesService.getAllEmployees()
-      .subscribe(output => {
+      .subscribe((output: any[]) => {
         this.employees = output;
-        console.log(this.employees);
+
+        this.chRef.detectChanges();
+        const table: any = $('table');
+        this.dataTable = table.DataTable();
       })
   }
 }
