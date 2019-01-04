@@ -24,10 +24,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user) 
       .pipe(first()).subscribe(result => {
         if(result && result.token){
-
           localStorage.setItem('currentUser', result.token);
-          
-
+          this.router.navigate(['/dashboard']);
         }else{
           console.log("something went wrong");
         }

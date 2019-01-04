@@ -23,7 +23,6 @@ export class UserProfileComponent implements OnInit {
     this.employeeService.userProfile()
       .subscribe(output => {
         this.users = output;
-        console.log(this.users);
       })
   }
 
