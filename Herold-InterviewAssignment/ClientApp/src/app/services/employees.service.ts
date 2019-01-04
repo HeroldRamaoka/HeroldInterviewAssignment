@@ -12,15 +12,13 @@ export class EmployeesService {
   ) { }
 
     getAllEmployees(): Observable<Employees[]> {
-      return this.http.get<Employees[]>("http://staging.tangent.tngnt.co/api/employee/",{
-        headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
-      })
+      return this.http.get<Employees[]>("https://localhost:44327/api/Employee/employees/"
+      );
     }
 
     userProfile(): Observable<UserProfile[]>{
-      return this.http.get<UserProfile[]>("http://staging.tangent.tngnt.co/api/employee/me/", {
-        headers: new HttpHeaders({'Authorization': 'Token ' + localStorage.getItem("currentUser")})
-      });
+      return this.http.get<UserProfile[]>("https://localhost:44327/api/Employee/userProfile/"
+      );
  
     }
 

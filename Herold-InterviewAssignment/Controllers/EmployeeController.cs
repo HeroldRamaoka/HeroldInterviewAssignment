@@ -37,8 +37,6 @@ namespace Herold_InterviewAssignment.Controllers
                     using (HttpContent content = response.Content)
                     {
                         string mycontent = await content.ReadAsStringAsync();
-                        HttpContentHeaders headers = content.Headers;
-
                         var json = JsonConvert.DeserializeObject(mycontent);
 
                         return Ok(json);
@@ -47,6 +45,59 @@ namespace Herold_InterviewAssignment.Controllers
             }
 
             return BadRequest("Did not get data");
+        }
+
+        [HttpGet]
+        [Route("employees")]
+        public async Task<IActionResult> GetAllEmployees()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
+
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/");
+
+                if (response.StatusCode.ToString() == "OK")
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
+
+                        var jsonData = JsonConvert.DeserializeObject(mycontent);
+
+                        return Ok(jsonData);
+                    }
+                }
+            }
+
+            return BadRequest("Did not get any data!");
+        }
+
+        [HttpGet]
+        [Route("userProfile")]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
+
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/me/");
+
+                if (response.StatusCode.ToString() == "OK")
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
+                        var jsonData = JsonConvert.DeserializeObject(mycontent);
+
+                        return Ok(jsonData);
+                    }
+                }
+            }
+
+            return BadRequest("Did not get data!");
         }
     }
 }
