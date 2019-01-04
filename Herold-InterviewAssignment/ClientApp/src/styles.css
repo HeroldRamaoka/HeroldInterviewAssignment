@@ -224,3 +224,11 @@ button.toast-close-button {
 .headings {
   font-weight: 600 !important;
 }
+
+.headingColor {
+  background: rgb(199, 199, 214);
+}
+
+td {
+  font-size: 16px !important;
+}
