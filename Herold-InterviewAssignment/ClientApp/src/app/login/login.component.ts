@@ -25,33 +25,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.userService.logout();
-    this.success();
-    this.failToLogIn();
   }
 
   login(){
     this.userService.login(this.user) 
       .pipe(first()).subscribe(result => {
 
-        console.log(result);
         if(result && result.token){
-
           localStorage.setItem('currentUser', result.token);
-          this.router.navigate(['/nav']);
-
-        }else{
-          // console.log("something went wrong");
-          this.failToLogIn();
+          this.router.navigate(['/dashboard']);
         }
+      },
+      err => {
+          this.failToLogIn();
       })
   }
 
-
-  success() {
-    this.toastr.success('Hello', "You are in");
-  }
-
   failToLogIn() {
-    this.toastr.error('Invalid Credentials', "Please verify your login credentials!");
+    this.toastr.error('Please verify your login credentials', "Invalid credentials!");
   }
 }
