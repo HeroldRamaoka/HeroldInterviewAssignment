@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 
 namespace Herold_InterviewAssignment
@@ -53,15 +55,15 @@ namespace Herold_InterviewAssignment
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["jwt:Issuer"],
-                        ValidAudience = Configuration["jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
+                        //ValidIssuer = Configuration["jwt:Issuer"],
+                        //ValidAudience = Configuration["jwt:Issuer"],
+                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
                     };
 
                 });
-
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,14 +81,13 @@ namespace Herold_InterviewAssignment
 
 
             app.UseCors("HeroldAppCors");
-            //app.UseCors(builder =>
-            //{
-            //    builder.WithOrigins("https://localhost:4200/");
-            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseAuthentication();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
@@ -108,8 +109,6 @@ namespace Herold_InterviewAssignment
                 }
             });
 
-            app.UseMvc();
-            app.UseAuthentication();
         }
     }
 }

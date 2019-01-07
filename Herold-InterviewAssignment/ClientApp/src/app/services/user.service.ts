@@ -25,7 +25,8 @@ export class UserService {
 
    logout() {
      localStorage.removeItem('currentUser'); 
-     this.router.navigate(["/login"]);
+    this.http.get<any>("https://localhost:44327/api/Account/logout/")
+    window.location.href = "/login";
    }
 
 }   

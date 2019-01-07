@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.userService.logout();
   }
 
   login(){
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
 
         if(result && result.token){
           localStorage.setItem('currentUser', result.token);
-          this.router.navigate(['/dashboard']);
+          window.location.href = "/dashboard";
         }
       },
       err => {

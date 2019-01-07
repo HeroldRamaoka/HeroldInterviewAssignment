@@ -28,7 +28,7 @@ namespace Herold_InterviewAssignment.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                var accessToken = HttpContext.Session.GetString("token");
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/user/me/");
 
@@ -53,7 +53,7 @@ namespace Herold_InterviewAssignment.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                var accessToken = HttpContext.Session.GetString("token");
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
 
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/");
@@ -80,7 +80,7 @@ namespace Herold_InterviewAssignment.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                var accessToken = "2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678";
+                var accessToken = HttpContext.Session.GetString("token");
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
 
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/me/");

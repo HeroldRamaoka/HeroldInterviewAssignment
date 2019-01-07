@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using HeroldInterviewAssignment.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Herold_InterviewAssignment.Controllers
 {
@@ -19,23 +21,22 @@ namespace Herold_InterviewAssignment.Controllers
     //[Authorize]
     public class AccountController : ControllerBase
     {
+        
+        [TempData]
+        public string accessTokennnn { get; set; }
 
         public AccountController()
         {
 
         }
 
-        [HttpGet, Route("testing")]
-        public IActionResult testing()
-        {
-            return Ok("Success");
-        }
-
         [HttpPost]
         [Route("token")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
+
             string mycontent = "";
+
             IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("username", user.Username),
@@ -51,15 +52,24 @@ namespace Herold_InterviewAssignment.Controllers
                     using (HttpContent content = response.Content)
                     {
                         mycontent = await content.ReadAsStringAsync();
-                        HttpContentHeaders headers = content.Headers;
-
                         var jsonData = JsonConvert.DeserializeObject(mycontent);
+                        JObject jsonDataParse = JObject.Parse(jsonData.ToString());
+                        var token = jsonDataParse["token"].ToString();
+
+                        HttpContext.Session.SetString("token", token);
 
                         return Ok(jsonData);
                     }
                 }
 
             return BadRequest("Unable to login, please check your credentials");
+        }
+
+        [HttpGet]
+        [Route("logout")]
+        public void LogOut()
+        {
+            HttpContext.Session.Remove("token");
         }
     }
 }

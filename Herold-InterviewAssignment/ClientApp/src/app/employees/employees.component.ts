@@ -10,9 +10,9 @@ import 'datatables.net-bs4';
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css']
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent {
 
-  public employees: Employees[];
+ employees: Employees[] = [];
   dataTable: any;
 
   constructor(
@@ -20,7 +20,7 @@ export class EmployeesComponent implements OnInit {
     private chRef: ChangeDetectorRef
   ) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getAllEmployees();
   }
 
@@ -28,7 +28,7 @@ export class EmployeesComponent implements OnInit {
     this.employeesService.getAllEmployees()
       .subscribe((output: any[]) => {
         this.employees = output;
-
+        console.log(this.employees);
         this.chRef.detectChanges();
         const table: any = $('table');
         this.dataTable = table.DataTable();

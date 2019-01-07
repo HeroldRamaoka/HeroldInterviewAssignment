@@ -20,7 +20,8 @@
               <tbody>
                 <tr *ngFor="let emp of employees">
                   <td>{{emp.user.first_name}} {{emp.user.last_name}}</td>
-                  <td>{{emp.position}}</td>
+                  <td *ngIf="emp.position != null">{{emp.position.name}}</td>
+                  <td *ngIf="emp.position == null"></td>
                   <td>{{emp.phone_number}}</td>
                   <td>{{emp.email}}</td>
                 </tr>

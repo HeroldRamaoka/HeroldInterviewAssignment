@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class AppNavbarComponent implements OnInit {
   public employee: Employee[];
+  currentUser: string;
+
   constructor(
     private userService: UserService,
     private http: HttpClient,
@@ -20,6 +22,7 @@ export class AppNavbarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.getToken();
     this.userLoggedin();
   }
 
@@ -34,11 +37,19 @@ export class AppNavbarComponent implements OnInit {
     this.userService.logout();
   }
 
+  getToken(){
+    this.currentUser = localStorage.getItem("currentUser");
+  }
+
   gotoUserProfile(): void {
     this.router.navigate(['/userprofile']);
   }
 
   gotoEmployees(): void {
     this.router.navigate(['/employees']);
+  }
+
+  gotoDashboard(): void {
+    this.router.navigate(['/dashboard']);
   }
 }
