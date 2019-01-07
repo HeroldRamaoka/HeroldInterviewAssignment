@@ -46,21 +46,6 @@ namespace Herold_InterviewAssignment
                 });
             });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        //ValidIssuer = Configuration["jwt:Issuer"],
-                        //ValidAudience = Configuration["jwt:Issuer"],
-                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
-                    };
-
-                });
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMvc();
