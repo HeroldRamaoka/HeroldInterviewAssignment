@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 
 namespace Herold_InterviewAssignment
@@ -26,6 +28,7 @@ namespace Herold_InterviewAssignment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddHttpClient();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -45,6 +48,15 @@ namespace Herold_InterviewAssignment
 
                 });
             });
+
+            Uri baseUrl = new Uri("http://staging.tangent.tngnt.co/");
+            HttpClient client = new HttpClient()
+            {
+                BaseAddress = baseUrl,
+            };
+            ServicePointManager.FindServicePoint(baseUrl).ConnectionLeaseTimeout = 2000000;
+            services.AddSingleton<HttpClient>(client);
+
 
             services.AddDistributedMemoryCache();
             services.AddSession();

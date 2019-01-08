@@ -18,16 +18,19 @@ namespace Herold_InterviewAssignment.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("HeroldAppCors")]
-    //[Authorize]
     public class AccountController : ControllerBase
     {
-        
-        [TempData]
-        public string accessTokennnn { get; set; }
+        private readonly HttpClient client;
 
-        public AccountController()
+        public AccountController(HttpClient client)
         {
+            this.client = client;
+        }
 
+        [HttpGet]
+        public IActionResult Testing()
+        {
+            return Ok();
         }
 
         [HttpPost]
@@ -44,8 +47,8 @@ namespace Herold_InterviewAssignment.Controllers
                 };
 
             HttpContent q = new FormUrlEncodedContent(queries);
-            using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage response = await client.PostAsync("http://staging.tangent.tngnt.co/api-token-auth/", q))
+            //using (HttpClient client = new HttpClient())
+            using (HttpResponseMessage response = await client.PostAsync("/api-token-auth/", q))
 
                 if (response.StatusCode.ToString() == "OK")
                 {
