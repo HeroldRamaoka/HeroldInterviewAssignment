@@ -1,4 +1,5 @@
 ﻿using Herold_InterviewAssignment.Controllers;
+using HeroldInterviewAssignment.Controllers;
 using HeroldInterviewAssignment.Model;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -46,17 +47,14 @@ namespace Herold_InterviewAssignmentUnitTest
                 Password = "pravin.gordhan"
             };
 
-            //var httpCLientMock = Substitute.For<IHttpClientFactory>();
+            var httpCLientMock = Substitute.For<IHttpClientFactory>();
 
-            //var MessageHandler = new AccountController(new HttpResponseMessage()
+            //var httpwrapper = new HttpWrapper(new HttpResponseMessage()
             //{
             //    StatusCode = HttpStatusCode.OK,
             //    Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")
-            //});
-            
-            var res = account.Login(user);
 
-            Assert.IsType<OkObjectResult>(res);
+            //});
         }
 
 

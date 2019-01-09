@@ -17,32 +17,30 @@ namespace Herold_InterviewAssignment.Controllers
     [EnableCors("HeroldAppCors")]
     public class EmployeeController : ControllerBase
     {
-        private readonly HttpClient client;
-
-        public EmployeeController(HttpClient client)
-        {
-            this.client = client;
-        }
+        //private readonly HttpClient client;
 
         [HttpGet]
         [Route("currentUser")]
         public async Task<IActionResult> GetToken()
         {
-            string accessToken = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
-            var response = await client.GetAsync("/api/user/me/");
-
-            if (response.StatusCode.ToString() == "OK")
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpContent content = response.Content)
-                {
-                    string mycontent = await content.ReadAsStringAsync();
-                    var json = JsonConvert.DeserializeObject(mycontent);
 
-                    return Ok(json);
+                string accessToken = HttpContext.Session.GetString("token");
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/user/me/");
+
+                if (response.StatusCode.ToString() == "OK")
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
+                        var json = JsonConvert.DeserializeObject(mycontent);
+
+                        return Ok(json);
+                    }
                 }
             }
-
             return BadRequest("Did not get data");
         }
 
@@ -50,20 +48,23 @@ namespace Herold_InterviewAssignment.Controllers
         [Route("employees")]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var accessToken = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
-
-            var response = await client.GetAsync("/api/employee/");
-
-            if (response.StatusCode.ToString() == "OK")
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpContent content = response.Content)
+                var accessToken = HttpContext.Session.GetString("token");
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
+
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/");
+
+                if (response.StatusCode.ToString() == "OK")
                 {
-                    string mycontent = await content.ReadAsStringAsync();
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
 
-                    var jsonData = JsonConvert.DeserializeObject(mycontent);
+                        var jsonData = JsonConvert.DeserializeObject(mycontent);
 
-                    return Ok(jsonData);
+                        return Ok(jsonData);
+                    }
                 }
             }
 
@@ -74,19 +75,22 @@ namespace Herold_InterviewAssignment.Controllers
         [Route("userProfile")]
         public async Task<IActionResult> GetUserProfile()
         {
-            var accessToken = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
-
-            var response = await client.GetAsync("/api/employee/me/");
-
-            if (response.StatusCode.ToString() == "OK")
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpContent content = response.Content)
-                {
-                    string mycontent = await content.ReadAsStringAsync();
-                    var jsonData = JsonConvert.DeserializeObject(mycontent);
+                var accessToken = HttpContext.Session.GetString("token");
+                client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
 
-                    return Ok(jsonData);
+                var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/me/");
+
+                if (response.StatusCode.ToString() == "OK")
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
+                        var jsonData = JsonConvert.DeserializeObject(mycontent);
+
+                        return Ok(jsonData);
+                    }
                 }
             }
 

@@ -49,13 +49,15 @@ namespace Herold_InterviewAssignment
                 });
             });
 
-            Uri baseUrl = new Uri("http://staging.tangent.tngnt.co/");
-            HttpClient client = new HttpClient()
-            {
-                BaseAddress = baseUrl,
-            };
-            ServicePointManager.FindServicePoint(baseUrl).ConnectionLeaseTimeout = 2000000;
-            services.AddSingleton<HttpClient>(client);
+            //services.AddHttpClient();
+
+            //Uri baseUrl = new Uri("http://staging.tangent.tngnt.co/");
+            //HttpClient client = new HttpClient()
+            //{
+            //    BaseAddress = baseUrl,
+            //};
+            ////ServicePointManager.FindServicePoint(baseUrl).ConnectionLeaseTimeout = 2000000;
+            //services.AddSingleton<HttpClient>(client);
 
 
             services.AddDistributedMemoryCache();

@@ -17,4 +17,14 @@ export interface UserProfile {
     start_date: string;
     level: string;
     salary: string;
+    next_review: string;
+    days_to_birthday: string;
+    employee_review: EmployeeReview;
+}
+
+export interface EmployeeReview{
+    date: string;
+    id: any;
+    salary: string;
+    type: string;
 }
