@@ -45,7 +45,7 @@ namespace Herold_InterviewAssignment.Controllers
                     new KeyValuePair<string, string>("password", user.Password)
                 };
 
-            HttpContent q = new FormUrlEncodedContent(queries);
+            FormUrlEncodedContent q = new FormUrlEncodedContent(queries);
             //using (HttpClient client = new HttpClient())
             using (HttpResponseMessage response = await client.PostAsync("/api-token-auth/", q))
 
