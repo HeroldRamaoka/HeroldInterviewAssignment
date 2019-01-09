@@ -51,7 +51,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {path: 'appcomponent', component: AppComponent},
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
-      {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+      {path: 'dashboard', component: DashboardComponent},
       {path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard]},
       {path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard]},
       {path: 'nav', component: AppNavbarComponent, canActivate: [AuthGuard]},

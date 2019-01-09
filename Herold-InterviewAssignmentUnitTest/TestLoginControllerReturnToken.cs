@@ -1,8 +1,12 @@
 ﻿using Herold_InterviewAssignment.Controllers;
 using HeroldInterviewAssignment.Model;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Newtonsoft.Json;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -17,9 +21,9 @@ namespace Herold_InterviewAssignmentUnitTest
         EmployeeController employee;
         public readonly HttpClient client;
 
-        public TestLoginControllerReturnToken()
+        public TestLoginControllerReturnToken(AccountController account)
         {
-            //account = new AccountController();
+            account = this.account;
             //employee = new EmployeeController();
         }
 
@@ -36,31 +40,23 @@ namespace Herold_InterviewAssignmentUnitTest
         [Fact]
         public void Add_InvalidCredentials_ReturnsBadRequest()
         {
-            HttpClient client = new HttpClient();
-
             var user = new User()
             {
                 Username = "pravin.gordhan ",
                 Password = "pravin.gordhan"
             };
-            var request = new HttpRequestMessage
-            {
-                RequestUri = new Uri("http://staging.tangent.tngnt.co/api-token-authhh/"),
-                Method = HttpMethod.Post
-            };
 
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //var httpCLientMock = Substitute.For<IHttpClientFactory>();
 
-            using (var response = client.SendAsync(request).Result)
-            {
-                Assert.IsType<HttpResponseMessage>(response);
-            }
+            //var MessageHandler = new AccountController(new HttpResponseMessage()
+            //{
+            //    StatusCode = HttpStatusCode.OK,
+            //    Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")
+            //});
+            
+            var res = account.Login(user);
 
-            //// Act
-            //var badRequest = await account.Login(user);
-
-            //// Assert
-            //Assert.IsType<BadRequestResult>(badRequest);
+            Assert.IsType<OkObjectResult>(res);
         }
 
 

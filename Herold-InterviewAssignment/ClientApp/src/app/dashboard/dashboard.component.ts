@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
+import { EmployeesService } from '../services/employees.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { first } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private employeeService: EmployeesService) { }
 
   ngOnInit() {
   }
@@ -17,5 +18,7 @@ export class DashboardComponent implements OnInit {
   logout(){
     this.userService.logout();
   }
+
+  
 
 }

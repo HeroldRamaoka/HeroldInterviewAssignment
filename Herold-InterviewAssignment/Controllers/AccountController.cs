@@ -37,7 +37,6 @@ namespace Herold_InterviewAssignment.Controllers
         [Route("token")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
-
             string mycontent = "";
 
             IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()

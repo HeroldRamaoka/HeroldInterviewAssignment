@@ -10,7 +10,8 @@
   background-size: cover !important;
   /* opacity: 0.9;    */
   /* padding-top: 80px; */
-  background: #eee9e9 !important;
+  /* background: #eee9e9 !important; */
+  background: #DCDCDC !important;
 } 
 
 .starter-template {
@@ -234,5 +235,5 @@ td {
 }
 
 .dashboardCard {
-  border-radius: 0px !important;
+  border-radius: 20% !important;
 }
