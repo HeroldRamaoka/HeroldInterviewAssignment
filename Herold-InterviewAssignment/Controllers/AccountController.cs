@@ -14,6 +14,7 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using HeroldInterviewAssignment.Controllers;
 using System.Net;
+using HeroldInterviewAssignment;
 
 namespace Herold_InterviewAssignment.Controllers
 {
@@ -72,26 +73,13 @@ namespace Herold_InterviewAssignment.Controllers
                             JObject jsonDataParse = JObject.Parse(jsonData.ToString());
                             var token = jsonDataParse["token"].ToString();
 
-                            HttpContext.Session.SetString("token", token);
+                            CurrentUserToken.CurrentUserTokenSession = token;
+                            //HttpContext.Session.SetString("token", token);
 
                             return Ok(jsonData);
                         }
                     }
             }
-
-
-            //var response = await httpClientWrapper.Post("http://staging.tangent.tngnt.co/api-token-auth/");
-
-            //if (response.StatusCode == HttpStatusCode.OK)
-            //{
-            //    var body = await response.Content.ReadAsStringAsync();
-
-            //    return Ok();
-            //}
-            ////else
-            ////{
-            //return BadRequest();
-            ////}
 
             return BadRequest("Unable to login, please check your credentials");
         }

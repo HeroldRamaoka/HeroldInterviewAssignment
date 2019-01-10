@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using HeroldInterviewAssignment;
 using HeroldInterviewAssignment.Model;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -17,8 +18,6 @@ namespace Herold_InterviewAssignment.Controllers
     [EnableCors("HeroldAppCors")]
     public class EmployeeController : ControllerBase
     {
-        //private readonly HttpClient client;
-
         [HttpGet]
         [Route("currentUser")]
         public async Task<IActionResult> GetToken()
@@ -26,7 +25,7 @@ namespace Herold_InterviewAssignment.Controllers
             using (HttpClient client = new HttpClient())
             {
 
-                string accessToken = HttpContext.Session.GetString("token");
+                string accessToken = CurrentUserToken.CurrentUserTokenSession;
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/user/me/");
 
@@ -50,7 +49,8 @@ namespace Herold_InterviewAssignment.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                var accessToken = HttpContext.Session.GetString("token");
+                var accessToken = CurrentUserToken.CurrentUserTokenSession;
+                //var accessToken = HttpContext.Session.GetString("token");
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
 
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/");
@@ -77,7 +77,7 @@ namespace Herold_InterviewAssignment.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                var accessToken = HttpContext.Session.GetString("token");
+                var accessToken = CurrentUserToken.CurrentUserTokenSession;
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + accessToken);
 
                 var response = await client.GetAsync("http://staging.tangent.tngnt.co/api/employee/me/");
