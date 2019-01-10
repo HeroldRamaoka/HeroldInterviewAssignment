@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Herold-InterviewAssignment", "Herold-InterviewAssignment\Herold-InterviewAssignment.csproj", "{72B95046-336D-47C8-8D47-149BFE710706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Herold-InterviewAssignmentUnitTest", "Herold-InterviewAssignmentUnitTest\Herold-InterviewAssignmentUnitTest.csproj", "{B03F1894-D152-4B00-9A75-F16CE484E658}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Herold-InterviewAssignment-NUnit", "Herold-InterviewAssignment-NUnit\Herold-InterviewAssignment-NUnit.csproj", "{8F98FE20-513F-465E-BED5-DDDBFF1400AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{72B95046-336D-47C8-8D47-149BFE710706}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B95046-336D-47C8-8D47-149BFE710706}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B95046-336D-47C8-8D47-149BFE710706}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B03F1894-D152-4B00-9A75-F16CE484E658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B03F1894-D152-4B00-9A75-F16CE484E658}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B03F1894-D152-4B00-9A75-F16CE484E658}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B03F1894-D152-4B00-9A75-F16CE484E658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F98FE20-513F-465E-BED5-DDDBFF1400AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F98FE20-513F-465E-BED5-DDDBFF1400AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F98FE20-513F-465E-BED5-DDDBFF1400AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F98FE20-513F-465E-BED5-DDDBFF1400AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

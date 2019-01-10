@@ -24,22 +24,12 @@ namespace Herold_InterviewAssignment.Controllers
     public class AccountController : ControllerBase
     {
         //private readonly HttpClient client;
-        //private readonly HttpWrapper httpClientWrapper;
+        private readonly IHttpWrapper httpClientWrapper;
 
-        public AccountController()
+        public AccountController(IHttpWrapper httpClientWrapper)
         {
-            //this.client = client;
+            this.httpClientWrapper = httpClientWrapper;
         }
-
-
-        //Using the IHttClientFactory
-
-        //private readonly IHttpClientFactory _httpFactory;
-
-        //public AccountController(IHttpClientFactory httpFactory)
-        //{
-        //    _httpFactory = httpFactory;
-        //}
 
         [HttpGet]
         public IActionResult Testing()
@@ -49,39 +39,18 @@ namespace Herold_InterviewAssignment.Controllers
 
         [HttpPost]
         [Route("token")]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<ObjectResult> Login([FromBody] object user)
         {
-            string mycontent = "";
+            var response = await this.httpClientWrapper.Post("http://staging.tangent.tngnt.co/api-token-auth/", user);
 
-            IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                new KeyValuePair<string, string>("username", user.Username),
-                new KeyValuePair<string, string>("password", user.Password)
-            };
+                var body = await response.Content.ReadAsStringAsync();
 
-            FormUrlEncodedContent q = new FormUrlEncodedContent(queries);
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage response = await client.PostAsync("http://staging.tangent.tngnt.co/api-token-auth/", q))
-
-                    if (response.StatusCode.ToString() == "OK")
-                    {
-                        using (HttpContent content = response.Content)
-                        {
-                            mycontent = await content.ReadAsStringAsync();
-                            var jsonData = JsonConvert.DeserializeObject(mycontent);
-                            JObject jsonDataParse = JObject.Parse(jsonData.ToString());
-                            var token = jsonDataParse["token"].ToString();
-
-                            CurrentUserToken.CurrentUserTokenSession = token;
-                            //HttpContext.Session.SetString("token", token);
-
-                            return Ok(jsonData);
-                        }
-                    }
+                return StatusCode(200, await response.Content.ReadAsStringAsync());
             }
 
-            return BadRequest("Unable to login, please check your credentials");
+            return StatusCode(500, "Error");
         }
 
         [HttpGet]

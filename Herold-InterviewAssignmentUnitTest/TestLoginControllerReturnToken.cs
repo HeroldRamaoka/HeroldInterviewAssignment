@@ -18,26 +18,7 @@ namespace Herold_InterviewAssignmentUnitTest
 {
     public class TestLoginControllerReturnToken
     {
-        AccountController account;
-        EmployeeController employee;
-        public readonly HttpClient client;
-
-        public TestLoginControllerReturnToken(AccountController account)
-        {
-            account = this.account;
-            //employee = new EmployeeController();
-        }
-
-        [Fact]
-        public void TestingGet()
-        {
-            // Act
-            var req = account.Testing();
-
-            // Assert
-            Assert.IsType<OkResult>(req);
-        }
-
+    
         [Fact]
         public void Add_InvalidCredentials_ReturnsBadRequest()
         {

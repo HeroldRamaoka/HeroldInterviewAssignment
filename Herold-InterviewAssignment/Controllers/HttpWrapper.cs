@@ -1,4 +1,5 @@
 ﻿using HeroldInterviewAssignment.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,21 @@ namespace HeroldInterviewAssignment.Controllers
     public class HttpWrapper : IHttpWrapper
     {
         private readonly HttpClient httpClient;
-        private HttpResponseMessage httpResponseMessage;
 
-        public HttpWrapper(HttpClient httpClient)
+        public HttpWrapper()
         {
-            httpClient = this.httpClient;
+            httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://staging.tangent.tngnt.co/");
         }
 
-        public Task<HttpResponseMessage> Post(string url)
+        public Task<HttpResponseMessage> Post(string url, object data)
         {
-            return this.httpClient.PostAsync(url, new StringContent("JSONData"));
+            return this.httpClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(data)));
         }
     }
 
     public interface IHttpWrapper
     {
-        Task<HttpResponseMessage> Post(string url);
+        Task<HttpResponseMessage> Post(string url, object data);
     }
 }

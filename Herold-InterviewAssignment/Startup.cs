@@ -1,3 +1,4 @@
+using HeroldInterviewAssignment.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,17 +50,7 @@ namespace Herold_InterviewAssignment
                 });
             });
 
-            //services.AddHttpClient();
-
-            //Uri baseUrl = new Uri("http://staging.tangent.tngnt.co/");
-            //HttpClient client = new HttpClient()
-            //{
-            //    BaseAddress = baseUrl,
-            //};
-            ////ServicePointManager.FindServicePoint(baseUrl).ConnectionLeaseTimeout = 2000000;
-            //services.AddSingleton<HttpClient>(client);
-
-
+            services.AddSingleton<IHttpWrapper>();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMvc();
@@ -77,7 +68,6 @@ namespace Herold_InterviewAssignment
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
 
             app.UseCors("HeroldAppCors");
 
