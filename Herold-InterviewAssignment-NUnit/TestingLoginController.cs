@@ -33,6 +33,7 @@ namespace HeroldInterviewAssignmentNUnit
         [Test]
         public async Task TestingPositiveLoginMethod()
         {
+            // Creating new instance of User
             User user = new User()
             {
                 username = "pravin.gordhan",
@@ -45,12 +46,15 @@ namespace HeroldInterviewAssignmentNUnit
                 Content = new StringContent(JsonConvert.SerializeObject("{token: 43928742398742987439287429874}".ToString()), Encoding.UTF8, "appliction/json")
             });
 
+            // Creating new Instance of Account controller
             var accountControllerInstance = new AccountController(mock.Object);
 
             //act
+            // calling Login method from Account controller
             var result = await accountControllerInstance.Login(user);
 
-            //assert            
+            //assert
+            // Testing the result
             Assert.AreEqual(200, result.StatusCode);
         }
 

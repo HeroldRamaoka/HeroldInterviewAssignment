@@ -12,8 +12,8 @@ namespace HeroldInterviewAssignment.Model
         public string Email { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        //public bool IsActive { get; set; }
-        //public bool IsStaff { get; set; }
-
+        public bool IsActive { get; set; }
+        public bool IsStaff { get; set; }
+        public bool Is_superuser { get; set; }
     }
 }

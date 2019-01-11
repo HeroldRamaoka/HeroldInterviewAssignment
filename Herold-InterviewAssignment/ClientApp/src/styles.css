@@ -235,5 +235,7 @@ td {
 }
 
 .dashboardCard {
-  border-radius: 20% !important;
+  border-radius: 14px !important;
+  color: white !important;
+  background: #728088 !important;
 }
