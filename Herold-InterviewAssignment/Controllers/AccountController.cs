@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using HeroldInterviewAssignment.Controllers;
 using System.Net;
 using HeroldInterviewAssignment;
+using System.Text;
 
 namespace Herold_InterviewAssignment.Controllers
 {
@@ -23,7 +24,6 @@ namespace Herold_InterviewAssignment.Controllers
     [EnableCors("HeroldAppCors")]
     public class AccountController : ControllerBase
     {
-        //private readonly HttpClient client;
         private readonly IHttpWrapper httpClientWrapper;
 
         public AccountController(IHttpWrapper httpClientWrapper)
@@ -39,15 +39,27 @@ namespace Herold_InterviewAssignment.Controllers
 
         [HttpPost]
         [Route("token")]
-        public async Task<ObjectResult> Login([FromBody] object user)
+        public async Task<ObjectResult> Login([FromBody] User user)
         {
+            string mycontent = "";
             var response = await this.httpClientWrapper.Post("http://staging.tangent.tngnt.co/api-token-auth/", user);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var body = await response.Content.ReadAsStringAsync();
+                using (HttpContent content = response.Content)
+                {
+                    mycontent = await content.ReadAsStringAsync();
+                    var JsonData = JsonConvert.DeserializeObject(mycontent);
+                    JObject jsonDataObject = JObject.Parse(JsonData.ToString());
 
-                return StatusCode(200, await response.Content.ReadAsStringAsync());
+                    if (jsonDataObject["token"].ToString() != null)
+                    {
+                        var token = jsonDataObject["token"].ToString();
+
+                        CurrentUserToken.CurrentUserTokenSession = token;
+                    }
+                    return StatusCode(200, mycontent);
+                }
             }
 
             return StatusCode(500, "Error");
