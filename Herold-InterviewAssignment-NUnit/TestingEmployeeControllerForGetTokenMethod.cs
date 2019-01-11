@@ -32,23 +32,11 @@ namespace HeroldInterviewAssignmentNUnit
         [Test]
         public async Task TestingForPostiveResultOnGetCurrentUserMethod()
         {
-            var user = new Employee
-            {
-                Id = 12,
-                Username = "pravin.gordhan",
-                Firstname = "pravin",
-                Lastname = "gordhan",
-                Email = "pravin@axedmps.com",
-                IsActive = true,
-                IsStaff = true,
-                Is_superuser = false
-            };
-
             // Arrange
             mock.Setup(a => a.Get(It.IsAny<string>())).ReturnsAsync(new HttpResponseMessage()
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")
+                Content = new StringContent("")
             });
 
             // Create new Instance of Employee controller
@@ -66,23 +54,11 @@ namespace HeroldInterviewAssignmentNUnit
         [Test]
         public async Task TestingForNegativeOnGetCurrentUserMethod()
         {
-            var user = new Employee
-            {
-                Id = 12,
-                Username = "pravin.gordhan",
-                Firstname = "pravin",
-                Lastname = "gordhan",
-                Email = "pravin@axedmps.com",
-                IsActive = true,
-                IsStaff = true,
-                Is_superuser = false
-            };
-
             // Arrange
             mock.Setup(a => a.Get(It.IsAny<string>())).ReturnsAsync(new HttpResponseMessage()
             {
-                StatusCode = HttpStatusCode.BadRequest,
-                Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")
+                StatusCode = HttpStatusCode.BadGateway,
+                Content = new StringContent("")
             });
 
             // Create new instance of employee controller
@@ -93,7 +69,7 @@ namespace HeroldInterviewAssignmentNUnit
             var result = await employeecontroller.GetAllEmployees();
 
             // Assert Test result
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual(500, result.StatusCode);
 
         }
     }

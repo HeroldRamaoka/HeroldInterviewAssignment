@@ -70,7 +70,7 @@ namespace HeroldInterviewAssignmentNUnit
             // Arrange
             mock.Setup(a => a.Post(It.IsAny<string>(), It.IsAny<User>())).ReturnsAsync(new HttpResponseMessage()
             {
-                StatusCode = HttpStatusCode.Unauthorized,
+                StatusCode = HttpStatusCode.BadGateway,
                 Content = new StringContent(JsonConvert.SerializeObject("{token: 2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678}".ToString()), Encoding.UTF8, "application/json")
             });
 
@@ -80,7 +80,7 @@ namespace HeroldInterviewAssignmentNUnit
             var result = await accountControllerInstance.Login(user);
 
             // Assert
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual(500, result.StatusCode);
         }
     }
 }
