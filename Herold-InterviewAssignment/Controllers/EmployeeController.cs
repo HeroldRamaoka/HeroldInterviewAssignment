@@ -63,12 +63,12 @@ namespace Herold_InterviewAssignment.Controllers
                 }
             }
 
-            return StatusCode(500, "Did not find any user");
+            return StatusCode(500, "Did not get data");
         }
 
         [HttpGet]
         [Route("userProfile")]
-        public async Task<IActionResult> GetUserProfile()
+        public async Task<ObjectResult> GetUserProfile()
         {
             var response = await httpWrapper.Get("http://staging.tangent.tngnt.co/api/employee/me/");
 
@@ -82,7 +82,7 @@ namespace Herold_InterviewAssignment.Controllers
                 }
             }
 
-            return BadRequest("Did not get data!");
+            return StatusCode(500, "Did not find any user");
         }
     }
 }

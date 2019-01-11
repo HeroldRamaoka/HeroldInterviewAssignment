@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace HeroldInterviewAssignmentNUnit
 {
     [TestFixture]
-    public class TestingEmployeeControllerForGetAllEmployeesMethod
+    public class TestingEmployeeControllerForGetUserProfileMethod
     {
         private Mock<IHttpWrapper> mock;
 
-        public TestingEmployeeControllerForGetAllEmployeesMethod()
+        public TestingEmployeeControllerForGetUserProfileMethod()
         {
 
         }
@@ -28,7 +28,7 @@ namespace HeroldInterviewAssignmentNUnit
         }
 
         [Test]
-        public async Task TestingForPostiveResultOnGetAllEmployeeMethod()
+        public async Task TestingForPostiveResultOnGetUserProfileMethod()
         {
             // Arrange
             mock.Setup(a => a.Get(It.IsAny<string>())).ReturnsAsync(new HttpResponseMessage()
@@ -41,15 +41,15 @@ namespace HeroldInterviewAssignmentNUnit
             var employeeControllerInstance = new EmployeeController(mock.Object);
 
             // Act
-            // Call GetAllEmployees method from employee controller
-            var result = await employeeControllerInstance.GetAllEmployees();
+            // Call GetUserProfile method from employee controller
+            var result = await employeeControllerInstance.GetUserProfile();
 
             // Assert (testing the result)
             Assert.AreEqual(200, result.StatusCode);
         }
 
         [Test]
-        public async Task TestingForNegativeOnGetAllEmployeeMethod()
+        public async Task TestingForNegativeOnGetUserProfileMethod()
         {
             // Arrange
             mock.Setup(a => a.Get(It.IsAny<string>())).ReturnsAsync(new HttpResponseMessage()
@@ -62,8 +62,8 @@ namespace HeroldInterviewAssignmentNUnit
             var employeecontroller = new EmployeeController(mock.Object);
 
             // Act
-            // Call GetAllEmployees method
-            var result = await employeecontroller.GetAllEmployees();
+            // Call GetUserProfile method
+            var result = await employeecontroller.GetUserProfile();
 
             // Assert Test result
             Assert.AreEqual(500, result.StatusCode);
