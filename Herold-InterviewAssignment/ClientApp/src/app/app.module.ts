@@ -23,6 +23,7 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesService } from './services/employees.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AccountComponent,
     AppNavbarComponent,
     EmployeesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,7 +58,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard]},
       {path: 'nav', component: AppNavbarComponent, canActivate: [AuthGuard]},
 
-      {path: '**', redirectTo: '' }
+      {path: '**', component: Page404Component }
     ])
   ],
   providers: [
