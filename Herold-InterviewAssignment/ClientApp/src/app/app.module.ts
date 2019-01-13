@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadingStrategy, PreloadAllModules } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -46,7 +46,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       {path: 'appcomponent', component: AppComponent},
       { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
@@ -56,7 +56,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard]},
       {path: 'nav', component: AppNavbarComponent, canActivate: [AuthGuard]},
 
-      {path: '**', redirectTo: '' }
+      {path: '**', redirectTo: 'login' }
     ])
   ],
   providers: [

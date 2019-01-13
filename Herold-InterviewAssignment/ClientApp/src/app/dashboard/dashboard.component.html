@@ -7,7 +7,7 @@
   <div class="container-fluid mt-3 mb-5">
     <div class="row mb-4">
       <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
-        <div class="card dashboardCard">
+        <div class="card dashboardCard allempsCard" (click)="gotoEmployees()">
           <div class="card-body pb-0">
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-12 col-lg-4 mb-2" style="font-size: 35px">
@@ -90,7 +90,7 @@
     <div class="card ">
       <div class="card-body pb-0">
         <div class="row mt-2">
-          <div class="col-12 col-md-12 col-lg-4">
+          <div class="col-12 col-md-12 col-lg-4 mb-4">
             <div class="card">
               <div class="card-header headingColor">
                 <h4 style="font-weight: 600">Birthday date for all users</h4>
@@ -210,33 +210,36 @@
 
             <!-- Race -->
 
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              <div class="card">
-                <div class="card-header headingColor">
-                  <h4 style="font-weight: 600">Races</h4>
-                </div>
-                <div class="card-body pb-0">
-                  <table class="table table-striped table-bordered tablebdays" id="birthdateTable" style="width:100%">
-                    <thead>
-                      <tr style="background: #DCDCDC">
-                        <th>Black</th>
-                        <th>White</th>
-                        <th>Coloured</th>
-                        <th>Indians</th>
-                        <th>Others</th>
-                      </tr>
-                    </thead>
+            <div class="row mb-4">
 
-                    <tbody>
-                      <tr>
-                        <td>{{ numberOfBlack }}</td>
-                        <td>{{ numberOfWhite }}</td>
-                        <td>{{ numberOfColored }}</td>
-                        <td>{{ numberOfIndians }}</td>
-                        <td>{{ numberOfN }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="card-header headingColor">
+                    <h4 style="font-weight: 600">Races</h4>
+                  </div>
+                  <div class="card-body pb-0">
+                    <table class="table table-striped table-bordered tablebdays" id="birthdateTable" style="width:100%">
+                      <thead>
+                        <tr style="background: #DCDCDC">
+                          <th>Black</th>
+                          <th>White</th>
+                          <th>Coloured</th>
+                          <th>Indians</th>
+                          <th>Others</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>{{ numberOfBlack }}</td>
+                          <td>{{ numberOfWhite }}</td>
+                          <td>{{ numberOfColored }}</td>
+                          <td>{{ numberOfIndians }}</td>
+                          <td>{{ numberOfN }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

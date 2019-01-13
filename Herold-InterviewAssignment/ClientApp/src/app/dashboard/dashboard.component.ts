@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { element } from 'protractor';
 import { race } from 'rxjs/observable/race';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,7 +40,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     private employeeService: EmployeesService,
-    private chRef: ChangeDetectorRef
+    private chRef: ChangeDetectorRef,
+    private router: Router
 
   ) { }
 
@@ -163,6 +165,10 @@ export class DashboardComponent implements OnInit {
 
         this.numberOfRaces = listofrace.length;
       })
+  }
+
+  gotoEmployees() {
+    this.router.navigate(["/employees"]);
   }
 
 }

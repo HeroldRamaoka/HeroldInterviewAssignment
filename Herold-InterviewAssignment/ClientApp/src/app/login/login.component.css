@@ -10,3 +10,22 @@
     height: 35px !important;
     border-radius: 0%;
 }
+
+.loginImage {
+    border-radius: 50%; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.loginText {
+    font-family: Cooper Black; 
+    color: deepskyblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginMessage {
+    font-size: 20px !important;
+    font-family: cooper black;
+     color: deepskyblue;
+}
