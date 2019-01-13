@@ -1,10 +1,13 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
 import { EmployeesService } from '../services/employees.service';
 import { Employees } from '../models/employees';
 import { UserProfile } from '../models/userProfile';
 import * as moment from 'moment';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { element } from 'protractor';
+import { race } from 'rxjs/observable/race';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,32 +16,51 @@ import * as moment from 'moment';
 })
 export class DashboardComponent implements OnInit {
 
-  currentUser: UserProfile[];
+  currentUser: UserProfile;
+  employees: UserProfile[];
   allemployees: Employees[];
+  allRaces: UserProfile[];
   empReview: UserProfile[];
-  reviews: any[];
+  numberOfReviews: any = 0;
   numberOfJobTitle: any = 0;
   numberOfemployees: any = 0;
   numberOfbirthdays: any = 0;
   numberOfLevels: any = 0;
+  numberOfFemales: any = 0;
+  numberOfMales: any = 0;
+  numberOfRaces: any = 0;
+  dataTable: any;
+  numberOfColored: any = 0;
+  numberOfBlack: any = 0;
+  numberOfWhite: any = 0;
+  numberOfIndians: any = 0;
+  numberOfN: any = 0;
 
-  constructor(private userService: UserService, private employeeService: EmployeesService) { }
+  constructor(
+    private userService: UserService,
+    private employeeService: EmployeesService,
+    private chRef: ChangeDetectorRef
+
+  ) { }
 
   ngOnInit() {
-    this.getsingleUser();
+    this.getUserReviews();
     this.countEmployeesAndJobTitle();
     this.countBirthdays();
-    this.countLevel();
+    this.countGender();
+    this.countRaces();
   }
 
   logout() {
     this.userService.logout();
   }
 
-  getsingleUser() {
+  getUserReviews() {
     this.employeeService.userProfile()
-      .subscribe((data: any[]) => {
+      .subscribe((data: any) => {
         this.currentUser = data;
+
+        this.numberOfReviews = this.currentUser.employee_review.length;
 
       })
   }
@@ -46,7 +68,17 @@ export class DashboardComponent implements OnInit {
   countEmployeesAndJobTitle() {
     this.employeeService.getAllEmployees()
       .subscribe((data: any[]) => {
+
+        this.employees = data;
+
+        // creating datatable for all users
+        // this.chRef.detectChanges();
+        // const table: any = $('#birthdateTable');
+        // this.dataTable = table.DataTable();
+
+
         this.allemployees = data;
+
         this.numberOfemployees = this.allemployees.length;
 
         var listoftitle = new Array();
@@ -84,25 +116,52 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  countLevel() {
+
+  countGender() {
     this.employeeService.getAllEmployees()
       .subscribe((data: any[]) => {
-        this.allemployees = data;
-        this.numberOfemployees = this.allemployees.length;
+        this.employees = data;
 
-        var listoftitle = new Array();
+        this.employees.forEach(element => {
+          if (element.gender == "M") {
+            this.numberOfMales += 1;
+          } else {
+            this.numberOfFemales += 1;
+          }
+        });
+      })
+  }
 
-        this.allemployees.forEach(element => {
-          if (element.position != null) {
+  countRaces() {
+    this.employeeService.getAllEmployees()
+      .subscribe((data: any) => {
+        this.allRaces = data;
 
-            if (!listoftitle.includes(element.position.level)) {
-              listoftitle.push(element.position.level);
+        var listofrace = new Array();
+
+        this.allRaces.forEach(element => {
+          if (element.race != null) {
+
+            if (!listofrace.includes(element.race)) {
+              listofrace.push(element.race);
+            }
+
+            if (element.race == "B") {
+              this.numberOfBlack += 1;
+            } else if (element.race == "W") {
+              this.numberOfWhite += 1;
+            } else if (element.race == "I") {
+              this.numberOfIndians += 1;
+            } else if (element.race == "N") {
+              this.numberOfN += 1;
+            } else if (element.race == "C") {
+              this.numberOfColored += 1;
             }
 
           }
         });
 
-        this.numberOfLevels = listoftitle.length;
+        this.numberOfRaces = listofrace.length;
       })
   }
 

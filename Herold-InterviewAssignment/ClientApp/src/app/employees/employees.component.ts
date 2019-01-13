@@ -28,7 +28,8 @@ export class EmployeesComponent {
     this.employeesService.getAllEmployees()
       .subscribe((output: any[]) => {
         this.employees = output;
-        console.log(this.employees);
+
+        // Creating datatables for all employees table
         this.chRef.detectChanges();
         const table: any = $('table');
         this.dataTable = table.DataTable();

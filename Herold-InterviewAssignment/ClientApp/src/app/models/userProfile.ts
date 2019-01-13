@@ -19,7 +19,9 @@ export interface UserProfile {
     salary: string;
     next_review: string;
     days_to_birthday: string;
-    employee_review: EmployeeReview;
+    leave_remaining: string;
+    years_worked: string;
+    employee_review: EmployeeReview[];
 }
 
 export interface EmployeeReview{
