@@ -19,3 +19,7 @@ img {
     font-weight:600;
     color: whitesmoke;
   }
+
+  .allempsCard:hover {
+    cursor: pointer;
+  }

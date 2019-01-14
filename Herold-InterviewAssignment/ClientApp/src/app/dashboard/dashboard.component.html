@@ -2,24 +2,23 @@
 <html>
 
 <body>
-  <h3 class="headings pl-3 ml-3 mb-3">Dashboard</h3>
+  <h3 class="headings pl-3 ml-3 mb-4 mt-0">Dashboard</h3>
 
-  <div class="container-fluid mt-3">
+  <div class="container-fluid mt-3 mb-5">
     <div class="row mb-4">
       <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
-        <div class="card dashboardCard">
-          <div class="card-body">
+        <div class="card dashboardCard allempsCard" (click)="gotoEmployees()">
+          <div class="card-body pb-0">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mb-2">
-                <!-- <img src="../../assets/images/images emp 2.jpeg" class="ml-4" style="width: 65px; height: 65px;"> -->
-                <i class="fa fa-users fa-lg ml-5 mt-5"></i>
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-4 mb-2" style="font-size: 35px">
+                <i class="fa fa-users fa-lg ml-5 mt-4 mb-2"></i>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-8">
                 <p class="dashboardCardhead">Number Of Employees</p>
 
                 <div class="row">
-                  <h6 class="col-3 dashboardCardnumber">{{numberOfemployees}}</h6>
-                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Employees</p>
+                  <h6 class="col-3 col-sm-4 dashboardCardnumber">{{numberOfemployees}}</h6>
+                  <p class="col-9 col-sm-8 mt-3 pl-0 dashboardCardtitle">Employees</p>
                 </div>
               </div>
             </div>
@@ -28,17 +27,17 @@
       </div>
       <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
         <div class="card dashboardCard">
-          <div class="card-body">
+          <div class="card-body pb-0">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mb-2">
-                <img src="../../assets/images/Untitled-35-512jb1.png" class="ml-4" style="width: 65px; height: 65px;">
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-4 mb-2" style="font-size: 35px">
+                <i class="fa fa-users fa-lg ml-5 mt-4 mb-2"></i>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-                <p class="dashboardCardhead">Number Of Job Title</p>
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-8">
+                <p class="dashboardCardhead">Number Of Races</p>
 
                 <div class="row">
-                  <h6 class="col-3 dashboardCardnumber">{{numberOfJobTitle}}</h6>
-                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Job Title</p>
+                  <h6 class="col-3 dashboardCardnumber">{{numberOfRaces}}</h6>
+                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Races</p>
                 </div>
               </div>
             </div>
@@ -47,17 +46,17 @@
       </div>
       <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
         <div class="card dashboardCard">
-          <div class="card-body">
+          <div class="card-body pb-0">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mb-2">
-                <img src="../../assets/images/downloadbd.png" class="ml-4" style="width: 65px; height: 65px;">
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-4 mb-2" style="font-size: 35px">
+                <i class="fa fa-birthday-cake fa-lg ml-5 mt-4 mb-2"></i>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-8">
                 <p class="dashboardCardhead">Number Of Birthday(s)</p>
 
                 <div class="row">
                   <h6 class="col-3 dashboardCardnumber">{{numberOfbirthdays}}</h6>
-                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Birthday(s)</p>
+                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">This Month</p>
                 </div>
               </div>
             </div>
@@ -66,17 +65,17 @@
       </div>
       <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
         <div class="card dashboardCard">
-          <div class="card-body">
+          <div class="card-body pb-0">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 mb-2">
-                <img src="../../assets/images/imagesrev2.jpeg" class="ml-4" style="width: 65px; height: 65px;">
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-4 mb-2" style="font-size: 35px">
+                <i class="fa fa-edit fa-lg ml-5 mt-4 mb-2"></i>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-                <p class="dashboardCardhead">Number Of Levels</p>
+              <div class="col-xs-6 col-sm-6 col-md-12 col-lg-8">
+                <p class="dashboardCardhead">Number Of Review(s)</p>
 
                 <div class="row">
-                  <h6 class="col-3 dashboardCardnumber">{{numberOfLevels}}</h6>
-                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Level</p>
+                  <h6 class="col-3 dashboardCardnumber">{{numberOfReviews}}</h6>
+                  <p class="col-9 mt-3 pl-0 dashboardCardtitle">Employee Reviews</p>
                 </div>
               </div>
             </div>
@@ -88,16 +87,16 @@
 
 
 
-    <div class="card">
-      <div class="card-body">
-        <div class="row mt-5">
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
+    <div class="card ">
+      <div class="card-body pb-0">
+        <div class="row mt-2">
+          <div class="col-12 col-md-12 col-lg-4 mb-4">
             <div class="card">
               <div class="card-header headingColor">
-                <h4 style="font-weight: 600">Birthday Date for the current user</h4>
+                <h4 style="font-weight: 600">Birthday date for all users</h4>
               </div>
-              <div class="card-body">
-                <table class="table table-striped table-bordered" id="birthdateTable" style="width:100%">
+              <div class="card-body pb-0">
+                <table class="table table-striped table-bordered tablebdays" id="birthdateTable" style="width:100%">
                   <thead>
                     <tr style="background: #DCDCDC">
                       <th>Name</th>
@@ -107,38 +106,10 @@
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td>{{currentUser.user.first_name }} {{currentUser.user.last_name }}</td>
-                      <td>{{currentUser.birth_date}}</td>
-                      <td>{{currentUser.days_to_birthday}} day(s)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <div class="card">
-              <div class="card-header headingColor">
-                <h4 style="font-weight: 600">Review(s) for the current user</h4>
-              </div>
-              <div class="card-body">
-                <table class="table table-striped table-bordered" id="reviewsTable" style="width:100%">
-                  <thead>
-                    <tr style="background: #DCDCDC">
-                      <th>Name</th>
-                      <th>Review Date</th>
-                      <th>Review Type</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>{{currentUser.user.first_name }} {{currentUser.user.last_name }}</td>
-                      <td>{{currentUser.next_review}}</td>
-                      <td>Salary Increase</td>
+                    <tr *ngFor="let emp of employees">
+                      <td>{{emp.user.first_name }} {{emp.user.last_name }}</td>
+                      <td>{{emp.birth_date}}</td>
+                      <td>{{emp.days_to_birthday}} day(s)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -146,34 +117,136 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
-            <div class="card">
-              <div class="card-header headingColor">
-                <h4 style="font-weight: 600">Current user position data</h4>
+          <div class="col-sm-12 col-md-12 col-lg-8">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-6">
+
+                <!-- Review Information -->
+                <div class="card mb-4">
+                  <div class="card-header headingColor">
+                    <h4 style="font-weight: 600">Review(s) details of {{currentUser.user.first_name }}
+                      {{currentUser.user.last_name }}</h4>
+                  </div>
+                  <div class="card-body pb-0">
+                    <table class="table table-striped table-bordered" id="reviewsTable" style="width:100%">
+                      <thead>
+                        <tr style="background: #DCDCDC">
+                          <th>Review Date</th>
+                          <th>Review Type</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let review of currentUser.employee_review">
+                          <td>{{review.date}}</td>
+                          <td>{{review.type}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+                  </div>
+                </div>
+
+
+                <!-- Gender Information -->
+
+                <div class="card mb-4">
+                  <div class="card-header headingColor">
+                    <h4 style="font-weight: 600">Gender info</h4>
+                  </div>
+                  <div class="card-body pb-0">
+                    <table class="table table-striped table-bordered" id="reviewsTable" style="width:100%">
+                      <thead>
+                        <tr style="background: #DCDCDC">
+                          <th>Number of boys</th>
+                          <th>Number of girls</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>{{ numberOfFemales }}</td>
+                          <td>{{ numberOfMales }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <table class="table table-striped table-bordered">
-                  <tr>
-                    <th>First Name</th>
-                    <td>{{currentUser.user.first_name}}</td>
-                  </tr>
-                  <tr>
-                    <th>Last Name</th>
-                    <td>{{currentUser.user.last_name}}</td>
-                  </tr>
-                  <tr>
-                    <th>Position Name</th>
-                    <td>{{currentUser.position.name}}</td>
-                  </tr>
-                  <tr>
-                    <th>Position Level</th>
-                    <td>{{currentUser.position.level}}</td>
-                  </tr>
-                </table>
+
+              <!-- Position Data -->
+
+              <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="card mb-4">
+                  <div class="card-header headingColor">
+                    <h4 style="font-weight: 600">Position data</h4>
+                  </div>
+                  <div class="card-body pb-0">
+                    <table class="table table-striped table-bordered">
+                      <tr>
+                        <th>First Name</th>
+                        <td>{{currentUser.user.first_name}}</td>
+                      </tr>
+                      <tr>
+                        <th>Last Name</th>
+                        <td>{{currentUser.user.last_name}}</td>
+                      </tr>
+                      <tr>
+                        <th>Position Name</th>
+                        <td>{{currentUser.position.name}}</td>
+                      </tr>
+                      <tr>
+                        <th>Position Level</th>
+                        <td>{{currentUser.position.level}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- Race -->
+
+            <div class="row mb-4">
+
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="card-header headingColor">
+                    <h4 style="font-weight: 600">Races</h4>
+                  </div>
+                  <div class="card-body pb-0">
+                    <table class="table table-striped table-bordered tablebdays" id="birthdateTable" style="width:100%">
+                      <thead>
+                        <tr style="background: #DCDCDC">
+                          <th>Black</th>
+                          <th>White</th>
+                          <th>Coloured</th>
+                          <th>Indians</th>
+                          <th>Others</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>{{ numberOfBlack }}</td>
+                          <td>{{ numberOfWhite }}</td>
+                          <td>{{ numberOfColored }}</td>
+                          <td>{{ numberOfIndians }}</td>
+                          <td>{{ numberOfN }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
     </div>
   </div>
