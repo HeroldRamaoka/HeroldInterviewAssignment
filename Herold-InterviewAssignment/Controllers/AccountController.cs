@@ -21,7 +21,6 @@ namespace Herold_InterviewAssignment.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("HeroldAppCors")]
     public class AccountController : ControllerBase
     {
         private readonly IHttpWrapper httpClientWrapper;
@@ -63,13 +62,6 @@ namespace Herold_InterviewAssignment.Controllers
             }
 
             return StatusCode(500, "Error");
-        }
-
-        [HttpGet]
-        [Route("logout")]
-        public void LogOut()
-        {
-            HttpContext.Session.Remove("token");
         }
     }
 }
