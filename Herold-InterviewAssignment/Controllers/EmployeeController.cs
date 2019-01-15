@@ -17,7 +17,6 @@ namespace Herold_InterviewAssignment.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("HeroldAppCors")]
     public class EmployeeController : ControllerBase
     {
         private readonly IHttpWrapper httpWrapper;
